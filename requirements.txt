@@ -1,1 +1,5 @@
-aaa
+flask
+opencv-python
+fer==22.4.0
+tensorflow-cpu==2.10.1
+gunicorn
