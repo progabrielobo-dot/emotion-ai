@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emotion AI</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Fundo -->
+    <div class="background"></div>
+
+    <!-- Navbar -->
+    <nav>
+
+        <div class="logo">
+            🤖 Emotion AI
+        </div>
+
+        <div class="menu">
+
+            <a href="#">Início</a>
+            <a href="#">IA</a>
+            <a href="#">Análise</a>
+            <a href="#">Sistema</a>
+
+        </div>
+
+    </nav>
+
+    <!-- Conteúdo -->
+    <div class="container">
+
+        <!-- Painel esquerdo -->
+        <div class="left-panel">
+
+            <h1>
+                Inteligência Artificial Emocional
+            </h1>
+
+            <p>
+                Sistema avançado de reconhecimento facial capaz de analisar emoções humanas em tempo real utilizando visão computacional e IA.
+            </p>
+
+            <div class="stats">
+
+                <div class="box">
+                    <h2>99%</h2>
+                    <span>Precisão</span>
+                </div>
+
+                <div class="box">
+                    <h2>24h</h2>
+                    <span>Tempo Real</span>
+                </div>
+
+                <div class="box">
+                    <h2>7+</h2>
+                    <span>Emoções</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Painel da câmera -->
+        <div class="camera-panel">
+
+            <div class="camera-header">
+
+                <div class="live">
+
+                    <span class="dot"></span>
+
+                    AO VIVO
+
+                </div>
+
+                <div class="ai-status">
+                    IA Ativa
+                </div>
+
+            </div>
+
+            <div class="camera-box">
+
+                <img src="{{ url_for('video') }}">
+
+            </div>
+
+            <div class="footer-camera">
+
+                <div class="emotion-status">
+                    Detectando emoções em tempo real...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

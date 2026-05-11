@@ -1,0 +1,330 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#050816;
+
+    overflow:hidden;
+
+    color:white;
+}
+
+/* Fundo animado */
+
+.background{
+
+    position:fixed;
+
+    width:100%;
+    height:100%;
+
+    background:
+    radial-gradient(circle at 20% 20%, #00ffcc33 0%, transparent 25%),
+    radial-gradient(circle at 80% 30%, #0066ff33 0%, transparent 25%),
+    radial-gradient(circle at 50% 80%, #ff00ff22 0%, transparent 25%);
+
+    filter:blur(120px);
+
+    animation:bgMove 10s infinite alternate;
+}
+
+@keyframes bgMove{
+
+    from{
+        transform:scale(1) translateY(0px);
+    }
+
+    to{
+        transform:scale(1.2) translateY(-20px);
+    }
+}
+
+/* Navbar */
+
+nav{
+
+    width:100%;
+
+    padding:25px 60px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:relative;
+
+    z-index:10;
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#00ffcc;
+}
+
+.menu{
+
+    display:flex;
+
+    gap:30px;
+}
+
+.menu a{
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:0.3s;
+}
+
+.menu a:hover{
+
+    color:#00ffcc;
+}
+
+/* Container */
+
+.container{
+
+    width:100%;
+
+    height:calc(100vh - 100px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:60px;
+
+    padding:40px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+/* Painel esquerdo */
+
+.left-panel{
+
+    width:500px;
+}
+
+.left-panel h1{
+
+    font-size:65px;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    background:linear-gradient(90deg,#00ffcc,#00aaff);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.left-panel p{
+
+    color:#bfc9d9;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    margin-bottom:40px;
+}
+
+/* Stats */
+
+.stats{
+
+    display:flex;
+
+    gap:20px;
+}
+
+.box{
+
+    width:140px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    text-align:center;
+
+    box-shadow:
+    0 0 25px rgba(0,255,204,0.1);
+}
+
+.box h2{
+
+    color:#00ffcc;
+
+    margin-bottom:10px;
+
+    font-size:32px;
+}
+
+.box span{
+
+    color:#d1d5db;
+}
+
+/* Painel câmera */
+
+.camera-panel{
+
+    width:800px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter:blur(25px);
+
+    border-radius:30px;
+
+    padding:25px;
+
+    box-shadow:
+    0 0 40px rgba(0,255,204,0.15);
+}
+
+/* Topo câmera */
+
+.camera-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.live{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:bold;
+
+    color:#00ff88;
+}
+
+.dot{
+
+    width:12px;
+    height:12px;
+
+    background:#00ff88;
+
+    border-radius:50%;
+
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.5);
+        opacity:0.5;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* Status IA */
+
+.ai-status{
+
+    background:#00ffcc22;
+
+    color:#00ffcc;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    font-size:14px;
+}
+
+/* Webcam */
+
+.camera-box{
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:3px solid #00ffcc;
+
+    box-shadow:
+    0 0 35px rgba(0,255,204,0.4);
+}
+
+.camera-box img{
+
+    width:100%;
+
+    display:block;
+}
+
+/* Footer */
+
+.footer-camera{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:center;
+}
+
+.emotion-status{
+
+    background:rgba(255,255,255,0.08);
+
+    padding:14px 24px;
+
+    border-radius:15px;
+
+    color:#dbe4ee;
+
+    font-size:16px;
+}
