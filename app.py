@@ -1,6 +1,6 @@
 from flask import Flask, render_template, Response
 import cv2
-from fer import FER
+from deepface import DeepFace
 
 app = Flask(__name__)
 
