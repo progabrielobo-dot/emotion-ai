@@ -1,112 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Emotion AI</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
 
-    <title>Emotion AI</title>
+<style>
 
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+body{
+    margin:0;
+    padding:0;
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    overflow:hidden;
+}
 
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction:column;
+}
+
+video{
+    width:700px;
+    max-width:90%;
+    border-radius:20px;
+    border:5px solid #38bdf8;
+}
+
+#emocao{
+    margin-top:20px;
+    font-size:35px;
+    font-weight:bold;
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- Fundo -->
-    <div class="background"></div>
+<div class="container">
 
-    <!-- Navbar -->
-    <nav>
+<h1>Emotion AI</h1>
 
-        <div class="logo">
-            🤖 Emotion AI
-        </div>
+<video id="video" autoplay muted></video>
 
-        <div class="menu">
+<div id="emocao">
+Detectando emoção...
+</div>
 
-            <a href="#">Início</a>
-            <a href="#">IA</a>
-            <a href="#">Análise</a>
-            <a href="#">Sistema</a>
+</div>
 
-        </div>
+<script>
 
-    </nav>
+const video = document.getElementById('video')
 
-    <!-- Conteúdo -->
-    <div class="container">
+navigator.mediaDevices.getUserMedia({
+    video:true
+})
+.then((stream)=>{
+    video.srcObject = stream
+})
 
-        <!-- Painel esquerdo -->
-        <div class="left-panel">
+Promise.all([
+faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models'),
+faceapi.nets.faceExpressionNet.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models')
+])
 
-            <h1>
-                Inteligência Artificial Emocional
-            </h1>
+video.addEventListener('play',()=>{
 
-            <p>
-                Sistema avançado de reconhecimento facial capaz de analisar emoções humanas em tempo real utilizando visão computacional e IA.
-            </p>
+setInterval(async()=>{
 
-            <div class="stats">
+const detections = await faceapi
+.detectSingleFace(
+    video,
+    new faceapi.TinyFaceDetectorOptions()
+)
+.withFaceExpressions()
 
-                <div class="box">
-                    <h2>99%</h2>
-                    <span>Precisão</span>
-                </div>
+if(detections){
 
-                <div class="box">
-                    <h2>24h</h2>
-                    <span>Tempo Real</span>
-                </div>
+const expressoes = detections.expressions
 
-                <div class="box">
-                    <h2>7+</h2>
-                    <span>Emoções</span>
-                </div>
+let emocao = Object.keys(expressoes).reduce((a,b)=>
+expressoes[a] > expressoes[b] ? a : b
+)
 
-            </div>
+const traducao = {
+happy:"Feliz 😀",
+sad:"Triste 😢",
+angry:"Com Raiva 😠",
+neutral:"Neutro 😐",
+fearful:"Medo 😨",
+surprised:"Surpreso 😲",
+disgusted:"Nojo 🤢"
+}
 
-        </div>
+document.getElementById('emocao').innerHTML =
+traducao[emocao] || emocao
 
-        <!-- Painel da câmera -->
-        <div class="camera-panel">
+}
 
-            <div class="camera-header">
+},1000)
 
-                <div class="live">
+})
 
-                    <span class="dot"></span>
-
-                    AO VIVO
-
-                </div>
-
-                <div class="ai-status">
-                    IA Ativa
-                </div>
-
-            </div>
-
-            <div class="camera-box">
-
-                <img src="{{ url_for('video') }}">
-
-            </div>
-
-            <div class="footer-camera">
-
-                <div class="emotion-status">
-                    Detectando emoções em tempo real...
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+</script>
 
 </body>
 </html>
